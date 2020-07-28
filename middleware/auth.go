@@ -36,7 +36,7 @@ func AuthGuard(genUser bool) gin.HandlerFunc {
 		if err != nil {
 			c.JSON(http.StatusOK, gin.H{
 				"code": 2005,
-				"msg":  "无效的Token",
+				"msg":  err.Error(),
 			})
 			c.Abort()
 			return

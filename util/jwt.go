@@ -9,16 +9,17 @@ import (
 )
 
 type MyClaim struct {
-	UserId string `json:"uid"`
+	UserId uint `json:"uid"`
 	jwt.StandardClaims
 }
 
 func GenToken(userId uint) (string, error) {
 	c := MyClaim{
-		strconv.Itoa(int(userId)),
+		userId,
 		jwt.StandardClaims{
 			Id: strconv.Itoa(int(userId)),
 			Issuer:    "hello",
+			IssuedAt: time.Now().Unix(),
 			ExpiresAt: time.Now().Add(setting.TokenExpireDuration).Unix(),
 		},
 	}
@@ -28,7 +29,7 @@ func GenToken(userId uint) (string, error) {
 
 func ParseToken(tokenString string) (*MyClaim, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &MyClaim{}, func(token *jwt.Token) (interface{}, error) {
-		return token, nil
+		return setting.MySecret, nil
 	})
 	if err != nil {
 		return nil, err
