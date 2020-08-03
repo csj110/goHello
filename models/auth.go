@@ -11,4 +11,7 @@ type (
 		gorm.Model
 		Phone string `gorm:"unique_index;not null"`
 	}
+	CaptchaDto struct{
+		Phone string `json:"phone"`
+	}
 )

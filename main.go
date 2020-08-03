@@ -11,6 +11,8 @@ func main() {
 	// prepare the database connect
 	prePareDatabase()
 	defer repo.DB.Close()
+	prePareRedis()
+	defer repo.RDB.Close()
 
 	// create gin route
 	r := routes.CreateRoute()
@@ -24,12 +26,18 @@ func main() {
 	}
 }
 
-func prePareDatabase(){
+func prePareDatabase() {
 	// init mysql database
 	err := repo.InitMySql()
 	if err != nil {
-		log.Fatal("no access to database",err.Error())
+		log.Fatal("no access to database", err.Error())
 	}
 	// migrate
 	repo.DB.AutoMigrate(&models.User{})
+}
+func prePareRedis() {
+	err := repo.InitRedisClient()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 }

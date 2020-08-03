@@ -10,5 +10,6 @@ func CreateAuthRoute() {
 	{
 		authRoute.POST("login", service.HandlePostLogin)
 		authRoute.GET("info", middleware.AuthGuard(true), service.HandleGetInfo)
+		authRoute.POST("captcha",service.HandlePostCaptcha)
 	}
 }
