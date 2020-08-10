@@ -14,6 +14,7 @@ import (
 
 func HandleGetInfo(c *gin.Context) {
 	if user, ok := c.Get("user"); ok {
+
 		c.JSON(http.StatusOK, gin.H{
 			"user": user,
 		})

@@ -2,11 +2,17 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"math/rand"
 )
 
 func main() {
-	var a uint =2
-	c:=strconv.Itoa(int(a))
-	fmt.Println(c)
+	for i := 0;i<30;i++ {
+		fmt.Println(genCode())
+	}
+}
+
+func genCode() string {
+	code :=rand.Intn(1000000)
+	codeString:=fmt.Sprintf("%06d",code)
+	return codeString
 }
