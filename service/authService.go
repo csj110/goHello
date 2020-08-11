@@ -8,7 +8,6 @@ import (
 	"hello/util"
 	"math/rand"
 	"net/http"
-	"strconv"
 	"time"
 )
 
@@ -57,7 +56,7 @@ func HandlePostCaptcha(c *gin.Context)  {
 		c.JSON(http.StatusBadRequest,gin.H{"err":err.Error()})
 		return
 	}
-	var code = strconv.Itoa(rand.Intn(10000)+10000)[1:]
+	var code = fmt.Sprintf("%04d",rand.Intn(10000))
 	fmt.Println(code)
 	err:=repo.SetExp(captchaDto.Phone+":au",code,time.Minute*5)
 	if err != nil {
