@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"hello/dto"
 	"hello/models"
 	"hello/repo"
 	"hello/util"
@@ -23,7 +24,7 @@ func HandleGetInfo(c *gin.Context) {
 }
 
 func HandlePostLogin(c *gin.Context) {
-	var loginDto models.LoginDto
+	var loginDto dto.LoginDto
 	if err := c.ShouldBind(&loginDto); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err": "errBinding",
@@ -51,7 +52,7 @@ func HandlePostLogin(c *gin.Context) {
 }
 
 func HandlePostCaptcha(c *gin.Context)  {
-	var captchaDto models.CaptchaDto
+	var captchaDto dto.CaptchaDto
 	if err:=c.ShouldBind(&captchaDto);err!=nil{
 		c.JSON(http.StatusBadRequest,gin.H{"err":err.Error()})
 		return
