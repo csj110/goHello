@@ -5,7 +5,7 @@ import "github.com/gin-gonic/gin"
 var r *gin.Engine
 
 func CreateRoute()*gin.Engine{
-	r= gin.Default()
+	r= gin.New()
 	return r
 }
 

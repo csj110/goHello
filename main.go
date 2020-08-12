@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
+	"hello/middleware"
 	"hello/models"
 	"hello/repo"
 	"hello/routes"
@@ -16,6 +18,8 @@ func main() {
 
 	// create gin route
 	r := routes.CreateRoute()
+	r.Use(middleware.Logger())
+	r.Use(gin.Recovery())
 	// register routeGroup
 	routes.CreateAuthRoute()
 	routes.CreateUserRoute()
