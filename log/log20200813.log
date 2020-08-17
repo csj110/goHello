@@ -1,0 +1,5 @@
+time="2020-08-13 14:48:39" level=info host=DESKTOP-3FVF050 ip=127.0.0.1 method=GET path=/cate/all spendTime="74998 us" status=200 userAgent=vscode-restclient
+time="2020-08-13 14:52:14" level=info host=DESKTOP-3FVF050 ip=127.0.0.1 method=POST path=/cate spendTime="196008 us" status=200 userAgent=vscode-restclient
+time="2020-08-13 14:54:00" level=info host=DESKTOP-3FVF050 ip=127.0.0.1 method=GET path=/cate/all spendTime="1047 us" status=200 userAgent=vscode-restclient
+time="2020-08-13 14:56:35" level=info host=DESKTOP-3FVF050 ip=127.0.0.1 method=POST path=/cate spendTime="160117 us" status=200 userAgent=vscode-restclient
+time="2020-08-13 14:56:36" level=info host=DESKTOP-3FVF050 ip=127.0.0.1 method=GET path=/cate/all spendTime="0 us" status=200 userAgent=vscode-restclient

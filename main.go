@@ -24,7 +24,7 @@ func main() {
 	// register all routeGroup
 	routes.RegisterRoutes()
 
-	// serve the server
+	// start the server
 	if err := r.Run(":3000"); err != nil {
 		log.Fatal("app run failed")
 	}
