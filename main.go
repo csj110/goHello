@@ -18,11 +18,11 @@ func main() {
 
 	// create gin route
 	r := routes.CreateRoute()
+	// middleware
 	r.Use(middleware.Logger())
 	r.Use(gin.Recovery())
-	// register routeGroup
-	routes.CreateAuthRoute()
-	routes.CreateUserRoute()
+	// register all routeGroup
+	routes.RegisterRoutes()
 
 	// serve the server
 	if err := r.Run(":3000"); err != nil {
@@ -37,9 +37,11 @@ func prePareDatabase() {
 		log.Fatal("no access to database", err.Error())
 	}
 	// migrate
-	repo.DB.AutoMigrate(&models.User{})
+	repo.DB.AutoMigrate(&models.User{},&models.Category{},&models.Article{})
 }
+
 func prePareRedis() {
+	//redis cache 
 	err := repo.InitRedisClient()
 	if err != nil {
 		log.Fatal(err.Error())

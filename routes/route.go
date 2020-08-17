@@ -12,3 +12,10 @@ func CreateRoute()*gin.Engine{
 func CreateGroup(group string)*gin.RouterGroup{
 	return r.Group(group)
 }
+
+func RegisterRoutes(){
+	CreateAuthRoute()
+	CreateUserRoute()
+	CreateArticleRoute()
+	CreateCategoryRoute()
+}

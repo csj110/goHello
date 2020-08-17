@@ -2,13 +2,15 @@ package service
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
+	"hello/dto"
 	"hello/models"
 	"hello/repo"
 	"hello/util"
 	"math/rand"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 func HandleGetInfo(c *gin.Context) {
@@ -23,7 +25,7 @@ func HandleGetInfo(c *gin.Context) {
 }
 
 func HandlePostLogin(c *gin.Context) {
-	var loginDto models.LoginDto
+	var loginDto dto.LoginDto
 	if err := c.ShouldBind(&loginDto); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err": "errBinding",
@@ -50,18 +52,18 @@ func HandlePostLogin(c *gin.Context) {
 	})
 }
 
-func HandlePostCaptcha(c *gin.Context)  {
-	var captchaDto models.CaptchaDto
-	if err:=c.ShouldBind(&captchaDto);err!=nil{
-		c.JSON(http.StatusBadRequest,gin.H{"err":err.Error()})
+func HandlePostCaptcha(c *gin.Context) {
+	var captchaDto dto.CaptchaDto
+	if err := c.ShouldBind(&captchaDto); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return
 	}
-	var code = fmt.Sprintf("%04d",rand.Intn(10000))
+	var code = fmt.Sprintf("%04d", rand.Intn(10000))
 	fmt.Println(code)
-	err:=repo.SetExp(captchaDto.Phone+":au",code,time.Minute*5)
+	err := repo.SetExp(captchaDto.Phone+":au", code, time.Minute*5)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
-	c.JSON(http.StatusOK,gin.H{"success":true})
+	c.JSON(http.StatusOK, gin.H{"success": true})
 }

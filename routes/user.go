@@ -1,14 +1,11 @@
 package routes
 
-import (
-	"github.com/gin-gonic/gin"
-)
+import "hello/service"
 
 func CreateUserRoute() {
 	userRoute := CreateGroup("user")
 	{
-		userRoute.GET("/", func(c *gin.Context) {
-
-		})
+		userRoute.GET("/all", service.HandleUsersGet)
+		userRoute.GET("/{:id unit}",service.HandleUserGet)
 	}
 }
