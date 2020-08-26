@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"hello/models"
 	"hello/repo"
-	"net/http"
 )
 
 func HandleCategoriesGet(c *gin.Context) {
@@ -29,22 +28,11 @@ func HandleCategoryPost(c *gin.Context) {
 		ErrorByServer(c, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": cate})
+	OK(c,cate)
 }
 
 func checkCateExist(cate models.Category) bool {
 	var count int
 	repo.DB.Where(cate).Count(&count)
 	return count > 0
-}
-
-func OK(c *gin.Context, data interface{}) {
-	c.JSON(http.StatusOK, gin.H{"data": data, "success": true})
-}
-
-func ErrorByRequest(c *gin.Context, err string) {
-	c.JSON(http.StatusBadRequest, gin.H{"msg": err})
-}
-func ErrorByServer(c *gin.Context, err string) {
-	c.JSON(http.StatusInternalServerError, gin.H{"msg": err})
 }
