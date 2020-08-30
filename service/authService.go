@@ -27,16 +27,12 @@ func HandleGetInfo(c *gin.Context) {
 func HandlePostLogin(c *gin.Context) {
 	var loginDto dto.LoginDto
 	if err := c.ShouldBind(&loginDto); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"err": "errBinding",
-		})
+		ErrorByRequest(c,err.Error())
 		return
 	}
 	var user models.User
 	if err := repo.DB.Debug().FirstOrCreate(&user, map[string]interface{}{"phone": loginDto.Phone}).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"err": err.Error(),
-		})
+		ErrorByServer(c,err.Error())
 		return
 	}
 

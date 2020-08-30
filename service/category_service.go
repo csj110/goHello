@@ -3,7 +3,6 @@ package service
 import (
 	"hello/models"
 	"hello/repo"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -30,7 +29,7 @@ func HandleCategoryPost(c *gin.Context) {
 		ErrorByServer(c, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": cate})
+	OK(c, cate)
 }
 
 func checkCateExist(cate models.Category) bool {

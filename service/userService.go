@@ -34,12 +34,12 @@ func HandleUsersGet(c *gin.Context) {
 func HandleUserGet(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"msg": err.Error()})
+		ErrorByRequest(c,err.Error())
 		return
 	}
 	if err = repo.DB.Where("id = ?", id).Delete(models.User{}).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"msg": err.Error()})
+		ErrorByServer(c,err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"msg": "success"})
+	OK(c,"success")
 }

@@ -5,7 +5,7 @@ type (
 		Phone string `json:"phone"`
 		Code  string `json:"code"`
 	}
-	CaptchaDto struct{
+	CaptchaDto struct {
 		Phone string `json:"phone"`
 	}
 )
