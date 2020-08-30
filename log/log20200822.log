@@ -1,0 +1,4 @@
+time="2020-08-22 11:35:53" level=warning host=IDEA_PAD ip=127.0.0.1 method=GET path=/api/user/users spendTime="0 us" status=404 userAgent=vscode-restclient
+time="2020-08-22 11:36:04" level=warning host=IDEA_PAD ip=127.0.0.1 method=GET path=/api/user/all spendTime="0 us" status=404 userAgent=vscode-restclient
+time="2020-08-22 11:36:05" level=warning host=IDEA_PAD ip=127.0.0.1 method=GET path=/api/user/all spendTime="0 us" status=404 userAgent=vscode-restclient
+time="2020-08-22 11:36:31" level=info host=IDEA_PAD ip=127.0.0.1 method=GET path=/user/all spendTime="3003 us" status=200 userAgent=vscode-restclient

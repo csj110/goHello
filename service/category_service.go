@@ -1,10 +1,11 @@
 package service
 
 import (
-	"github.com/gin-gonic/gin"
 	"hello/models"
 	"hello/repo"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func HandleCategoriesGet(c *gin.Context) {
@@ -18,7 +19,7 @@ func HandleCategoriesGet(c *gin.Context) {
 func HandleCategoryPost(c *gin.Context) {
 	var cate models.Category
 	if err := c.ShouldBind(&cate); err != nil {
-		ErrorByRequest(c,err.Error())
+		ErrorByRequest(c, err.Error())
 		return
 	}
 	if checkCateExist(cate) {
@@ -36,15 +37,4 @@ func checkCateExist(cate models.Category) bool {
 	var count int
 	repo.DB.Where(cate).Count(&count)
 	return count > 0
-}
-
-func OK(c *gin.Context, data interface{}) {
-	c.JSON(http.StatusOK, gin.H{"data": data, "success": true})
-}
-
-func ErrorByRequest(c *gin.Context, err string) {
-	c.JSON(http.StatusBadRequest, gin.H{"msg": err})
-}
-func ErrorByServer(c *gin.Context, err string) {
-	c.JSON(http.StatusInternalServerError, gin.H{"msg": err})
 }
