@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-func main() {
+func test() {
 	for i := 0;i<30;i++ {
 		fmt.Println(genCode())
 	}
